@@ -5,7 +5,13 @@ class ImplicitStepper:
 
     def __init__(self, memory, operator, solver, space, time,
                  bc_left, bc_right, source=None) -> None:
-        ...
+        self.memory = memory
+        self.op = operator
+        self.space = space
+        self.time = time
+        self.bc_left = bc_left
+        self.bc_right = bc_right
+        self.source = source
         self.solver = solver
 
     def step(self, u_prev: Array, n: int) -> Array:
