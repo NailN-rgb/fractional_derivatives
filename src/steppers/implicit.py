@@ -1,3 +1,4 @@
+import numpy as np
 from ..types import Array
 
 class ImplicitStepper:
@@ -18,9 +19,9 @@ class ImplicitStepper:
 
         kappa = self.memory.diagonal_weight(n)
         rhs = self.memory.history_rhs(n)
-        
+
         if self.source is not None:
-            rhs += self.source(self.space.coords, t_now)
+            rhs += np.ravel(self.source(self.space.coords, t_now))
         rhs /= kappa
 
         rhs[0] = self.bc_left(t_now)

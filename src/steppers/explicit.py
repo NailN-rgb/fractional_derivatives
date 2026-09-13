@@ -35,7 +35,7 @@ class ExplicitStepper:
         rhs = self.memory.history_rhs(n)
         rhs += self.op.matvec(u_prev, t_prev)
         if self.source is not None:
-            rhs += self.source(self.space.coords, t_now)
+            rhs += np.ravel(self.source(self.space.coords, t_now))
 
         u = rhs / kappa
         u[0] = self.bc_left(t_now)

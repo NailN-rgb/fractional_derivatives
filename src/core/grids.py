@@ -17,11 +17,27 @@ class Grid1D:
 
     @property
     def interior(self) -> slice:
-        return slice(-1, 1)
+        return slice(1, -1)
 
     @property
     def boundary(self) -> Array:
         return np.array([0, self.n_dof - 1])
+
+    @property
+    def shape(self) -> tuple[int,...]:
+        return (self.x.size, )
+
+    @property
+    def nodes(self) -> tuple[Array,...]:
+        return (self.x, )
+
+    @property
+    def spacing(self) -> tuple[float,...]:
+        return (self.h, )
+
+    @property
+    def axes(self) -> tuple['str', ...]:
+        return ('x', )
 
 def uniform_space(length: float, n_cells: int) -> Grid1D:
     x = np.linspace(0., length, n_cells + 1)

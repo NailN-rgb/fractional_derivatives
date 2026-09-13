@@ -17,8 +17,8 @@ class ForwardSolver:
         space, time = self.disc.space, self.disc.time
         u = np.empty((time.t.size, space.n_dof))
 
-        u[0] = self.problem.u0(space.coords)
-        u[0, 0] = self.problem.bc_left(float(time.t[0]))
+        u[0]     = np.ravel(self.problem.u0(space.coords))
+        u[0, 0]  = self.problem.bc_left(float(time.t[0]))
         u[0, -1] = self.problem.bc_right(float(time.t[0]))
 
         self.memory.reset(u[0])
