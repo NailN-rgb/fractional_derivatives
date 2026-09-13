@@ -19,3 +19,6 @@ dev = [
     "mypy>=1.11",
 ]
 viz = ["matplotlib>=3.8"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fracdiff"]

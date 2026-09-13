@@ -1,9 +1,7 @@
-from src.core import Problem, Discretization, uniform_space, uniform_time
-from src.forward.solver import solve
-import numpy as np
-
-from src.viz.render import plot
-import src.viz.extract as extract
+from core import Problem, Discretization, uniform_space, uniform_time
+from forward.solver import solve
+from viz.render import plot
+import viz.extract as extract
 
 def box(c):
     x = c[0]
