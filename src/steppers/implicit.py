@@ -1,7 +1,6 @@
 from ..types import Array
 
 class ImplicitStepper:
-    """Безусловно устойчив."""
 
     def __init__(self, memory, operator, solver, space, time,
                  bc_left, bc_right, source=None) -> None:
@@ -19,6 +18,7 @@ class ImplicitStepper:
 
         kappa = self.memory.diagonal_weight(n)
         rhs = self.memory.history_rhs(n)
+        
         if self.source is not None:
             rhs += self.source(self.space.coords, t_now)
         rhs /= kappa

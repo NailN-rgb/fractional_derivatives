@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-import numpy as np
 from ..types import CoeffLike, SpaceFn, SpaceTimeFn, TimeFn
 
 @dataclass(frozen=True, slots=True)
@@ -10,7 +9,7 @@ class Problem:
     diffusion: CoeffLike
     u0: SpaceFn
     bc_left: TimeFn
-    bc_right: TimeFn               # → BoundaryCondition на шаге [1]
+    bc_right: TimeFn
     source: SpaceTimeFn | None = None
 
     def __post_init__(self) -> None:

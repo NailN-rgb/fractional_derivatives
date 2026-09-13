@@ -42,7 +42,7 @@ def _build_memory(problem: Problem, disc: Discretization):
 
 
 def assemble(problem: Problem, disc: Discretization) -> Stepper:
-    """Единственное место в проекте, где есть if по типу задачи."""
+    
     operator = Laplace1D(disc.space, problem.diffusion)
     memory = _build_memory(problem, disc)
 
