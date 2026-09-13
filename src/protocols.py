@@ -10,7 +10,7 @@ class TimeMemory(Protocol):
         # Start new calculation
         pass
 
-    def diaginal_weight(self, n: int) -> float:
+    def diagonal_weight(self, n: int) -> float:
         # Diaginal coef
         pass
 

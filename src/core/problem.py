@@ -13,7 +13,7 @@ class Problem:
     source: SpaceTimeFn | None = None
 
     def __post_init__(self) -> None:
-        if not 0.0 < self.alpha < 1.0:
+        if not 0.0 < self.alpha <= 1.0:
             raise ValueError(f"alpha должна лежать в (0, 1], получено {self.alpha}")
         if self.length <= 0 or self.final_time <= 0:
             raise ValueError("length и final_time должны быть положительны")
