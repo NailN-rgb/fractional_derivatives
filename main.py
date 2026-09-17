@@ -12,6 +12,7 @@ problem = Problem(
     u0=box,
     bc_left=lambda t: 0.0, bc_right=lambda t: 0.0,
 )
+
 disc = Discretization(space=uniform_space(1.0, 32),
                       time=uniform_time(0.1, 500), stepper="explicit")
 
