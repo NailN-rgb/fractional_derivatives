@@ -51,5 +51,4 @@ def _cached(alpha: float, z: float) -> float:
 
 
 def mittag_leffler_vec(alpha: float, z: np.ndarray) -> np.ndarray:
-    """Поэлементно с кэшем. В convergence_study повторов тысячи."""
     return np.array([_cached(alpha, float(v)) for v in np.atleast_1d(z)])

@@ -1,13 +1,20 @@
 import numpy as np
-from .primitives import Field1D, Field2D
+from .primitives import Field, Field1D, Field2D
 
 from ..forward.solution import Solution
 from ..types import Array
 
-def _shaped(sol: Solution, flat: Array):
+def _shaped(sol: Solution, flat: Array) -> Array:
     return np.asarray(flat).reshape(sol.space.shape)
 
-def _wrap(sol: Solution, values: Array, *, label=None, signed=False, vlabel='u'):
+def _wrap(
+    sol: Solution, 
+    values: Array, 
+    *, 
+    label=None, 
+    signed=False, 
+    vlabel='u'
+) -> Field:
     g = sol.space
 
     if values.ndim == 1:
@@ -23,9 +30,14 @@ def _wrap(sol: Solution, values: Array, *, label=None, signed=False, vlabel='u')
 
     raise NotImplementedError("График для таких данных построить невозможно")
 
-def at(sol: Solution, t: float, label=None, signed: bool=False, vlabel: str='u'):
+def at(
+    sol: Solution, 
+    t: float, 
+    label=None, 
+    signed: bool=False, 
+    vlabel: str='u'
+) -> Field:
     lbl = label if label is not None else f'$t={t:g}$'
-
     return _wrap(sol, _shaped(sol, sol.at_time(t)), label=lbl, signed=signed, vlabel=vlabel)
 
 
