@@ -1,4 +1,6 @@
 from typing import Protocol, runtime_checkable
+
+from src.forward.solution import Solution
 from .types import Array, MemoryCost, Coords
 
 @runtime_checkable
@@ -40,14 +42,19 @@ class SpatialOperator(Protocol):
     def matvec(self, u:Array, t:float) -> Array:
         # A * u
         pass
+
 @runtime_checkable
 class ShiftedSolver(Protocol):
     def solve(self, c: float, rhs: Array, u_ref: Array, t: float) -> Array:
         pass
+
 @runtime_checkable
 class Stepper(Protocol):
     def step(self, u_prev: Array, n: int) -> Array:
         # return u^k
         pass
 
-    
+@runtime_checkable
+class Observation(Protocol):
+    def __call__(self, sol: Solution) -> None:
+        pass

@@ -30,7 +30,9 @@ class L1Direct:
     def history_rhs(self, n: int) -> Array:
         if not 1 <= n <= self._filled:
             raise IndexError(f"история заполнена до слоя {self._filled - 1}, запрошен H_{n}")
+        
         out = self._b_last[n - 1] * self._u[0]
+
         if n > 1:
             tail = self._d[: n - 1][::-1]
             out += tail @ self._u[1:n]
