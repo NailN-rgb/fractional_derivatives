@@ -30,10 +30,12 @@ def _integral(alpha: float, x: float) -> float:
     inv_a = 1.0 / alpha
 
     def f(y: float) -> float:
-        return np.exp(-x * y**inv_a) / (y * y + 2.0 * y * c + 1.0)
+        # спектральное представление записано для E_a(-t^a); здесь t = x^{1/a},
+        # поэтому в экспоненте (x*y)^{1/a}, а не x * y^{1/a}
+        return np.exp(-((x * y) ** inv_a)) / (y * y + 2.0 * y * c + 1.0)
 
-    # масштаб убывания экспоненты ~ x^{-α}; разбиваем там, где она падает
-    s0 = min(1.0, x ** (-alpha)) if x > 0 else 1.0
+    # экспонента падает при y ~ 1/x; разбиваем там, где она падает
+    s0 = min(1.0, 1.0 / x) if x > 0 else 1.0
     total = 0.0
     for a, b in ((0.0, s0), (s0, 1.0), (1.0, np.inf)):
         if a < b:
