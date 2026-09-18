@@ -28,12 +28,12 @@ class FourierReference:
             return -self.diffusion * k**2
         return -self.diffusion * 4.0 / h**2 * np.sin(k * h / 2.0) ** 2
 
-    def exact(self, coords: Coords, t: float, grid: Grid1D | None = None) -> Array:
+    def exact(self, t: float, grid: Grid1D | None = None) -> Array:
         if grid is None:
             raise ValueError("FourierReference требует grid")
 
         g = self.u0_fn(grid.coords)[1:-1]
-        c = dst(g, type=1, norm="ortho")               # коэффициенты c_n
+        c = dst(g, type=1, norm="ortho")
         n = np.arange(1, g.size + 1)
         lam = self._eigenvalues(n, grid.h)
 

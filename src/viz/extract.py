@@ -51,7 +51,7 @@ def exact(
     vlabel: str='u'
 ) -> Field:
     lbl = label if label is not None else f'exact, $t={t:g}$'
-    return _wrap(grid, _shaped(grid, ref.exact(grid.coords, t, grid)),
+    return _wrap(grid, _shaped(grid, ref.exact(t, grid)),
                  label=lbl, signed=signed, vlabel=vlabel)
 
 
@@ -64,6 +64,6 @@ def error(
 ) -> Field:
     """Поточечная невязка — тот же Field, рисуется тем же plot()."""
     g = sol.space
-    diff = sol.at_time(t) - ref.exact(g.coords, t, g)
+    diff = sol.at_time(t) - ref.exact(t, g)
     lbl = label if label is not None else f'error, $t={t:g}$'
     return _wrap(g, _shaped(g, diff), label=lbl, signed=True, vlabel=vlabel)
